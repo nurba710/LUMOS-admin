@@ -7,6 +7,7 @@ export interface ButtonProps {
   color?: string;
   backgroundHover?: string;
   width?: string;
+  type: 'submit' | 'reset';
   height?: string;
   onClick: () => void;
   transitionDurationHover?: string
@@ -18,12 +19,14 @@ const Button: React.FC<ButtonProps> = ({
                                          height = '50px',
                                          background = '#4CAF50',
                                          name,
+                                         type,
                                          onClick,
                                          color = 'white',
                                          backgroundHover = '#3e8e41',
                                        }) => {
   return (
-  <ButtonStyle transitionDurationHover={transitionDurationHover}  width={width} height={height} backgroundHover={backgroundHover} background={background} color={color} onClick={onClick}>
+  <ButtonStyle type={type} transitionDurationHover={transitionDurationHover} width={width} height={height}
+               backgroundHover={backgroundHover} background={background} color={color} onClick={onClick}>
     {name}
   </ButtonStyle>
   );
