@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { COLORS } from './common/consts/colors.const';
 
 export default createGlobalStyle`
   *,
@@ -10,14 +9,6 @@ export default createGlobalStyle`
   
   *&::-webkit-scrollbar {
     width: 6px;
-  }
-  &::-webkit-scrollbar-track {
-    background: ${COLORS.BACKGROUND_LIGHT_GRAY};
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: ${COLORS.BLUE};
-    border-radius: 20px;
-    border: 3px solid ${COLORS.BLUE};
   }
 
   ul[class],
