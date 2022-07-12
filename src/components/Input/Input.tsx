@@ -10,6 +10,7 @@ export interface InputProps {
   placeholder: string;
   type: 'text' | 'password' | 'radio' | 'checkbox' | 'number';
   placeholderColor?: string;
+  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
   borderBottom?: string;
 }
 
@@ -17,16 +18,19 @@ export interface InputProps {
 const Input: React.FC<InputProps> = ({
                                        width = '200px',
                                        height = '35px',
+                                       onChange,
                                        type,
                                        placeholder,
                                        fontSize = '15px',
                                        color = 'Blue',
                                        background = 'white',
-                                       borderBottom='1px solid cornflowerblue',
+                                       borderBottom = '1px solid cornflowerblue',
                                        placeholderColor = 'cornflowerblue'
                                      }) => {
   return (
-  <InputStyle type={type} borderBottom={borderBottom} placeholderColor={placeholderColor} placeholder={placeholder} width={width} background={background} height={height}
+  <InputStyle onChange={onChange} type={type} borderBottom={borderBottom} placeholderColor={placeholderColor}
+              placeholder={placeholder}
+              width={width} background={background} height={height}
               fontSize={fontSize}
               color={color}>
   </InputStyle>
