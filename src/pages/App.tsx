@@ -1,15 +1,14 @@
 import React from 'react';
 import GlobalStyle from '../globalStyle';
 import AppRouter from '../router/AppRouter';
-import TodoList from "../components/TodoList";
-import Counter from "../components/Counter";
+import CollaboratorsPage from "../components/CollaboratorsPage/CollaboratorsPage";
+
 
 export const App = () => {
 
     return (
         <div className="App">
-            <Counter/>
-            <TodoList/>
+            <CollaboratorsPage/>
             <GlobalStyle/>
             <AppRouter/>
         </div>

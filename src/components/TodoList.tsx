@@ -1,4 +1,6 @@
 import {todoAPI} from "../service/todoService";
+import Loader from "./Loader/Loader";
+
 
 
 
@@ -7,7 +9,7 @@ const TodoList = () => {
 
     return (
         <div>
-            {isLoading && <h1>Идет загрузка ...</h1>}
+            {isLoading && <Loader width='140px' height='140px'/>}
             {error && <h1>Произошла ошибка </h1>}
             {todos && todos.map(todo =>
             <div key={todo.id}>{todo.id} - {todo.title}</div>)}
