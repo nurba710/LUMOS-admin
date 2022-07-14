@@ -12,12 +12,20 @@ export interface InputProps {
   placeholderColor?: string;
   onChange: (e: React.FormEvent<HTMLInputElement>) => void;
   borderBottom?: string;
+  value: string;
+  name?: string;
+  id?: string;
+  label?: string;
 }
 
 
 const Input: React.FC<InputProps> = ({
                                        width = '200px',
                                        height = '35px',
+                                       value,
+                                       label,
+                                       id,
+                                       name,
                                        onChange,
                                        type,
                                        placeholder,
@@ -28,12 +36,17 @@ const Input: React.FC<InputProps> = ({
                                        placeholderColor = 'cornflowerblue'
                                      }) => {
   return (
-  <InputStyle onChange={onChange} type={type} borderBottom={borderBottom} placeholderColor={placeholderColor}
-              placeholder={placeholder}
-              width={width} background={background} height={height}
-              fontSize={fontSize}
-              color={color}>
-  </InputStyle>
+  <>
+    <label id={id}>{label}</label>
+    <InputStyle
+    value={value} name={name} onChange={onChange} type={type} borderBottom={borderBottom}
+    placeholderColor={placeholderColor}
+    placeholder={placeholder}
+    width={width} background={background} height={height}
+    fontSize={fontSize}
+    color={color}>
+    </InputStyle>
+  </>
   );
 };
 
