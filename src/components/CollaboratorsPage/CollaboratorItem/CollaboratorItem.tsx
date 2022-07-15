@@ -1,6 +1,7 @@
 import React from 'react';
 import {ItemWrapper, ItemAvatar, Title, Info, Button} from "./CollaboratorItemStyle";
 import {colleague} from "../../../storeToolkit/Types";
+import {ageHelper} from "../../../common/helper/ageHelper";
 
 interface collaboratorItemProps {
     colleague: colleague
@@ -35,7 +36,7 @@ const CollaboratorItem: React.FC<collaboratorItemProps> = ({colleague}) => {
                     {name}
                 </Title>
                 <Info>
-                    {age} лет
+                    {age} {ageHelper(age)}
                 </Info>
                 <Info>
                     Позиция: {position}

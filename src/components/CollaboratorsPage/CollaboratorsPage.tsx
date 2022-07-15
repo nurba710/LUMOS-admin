@@ -3,9 +3,9 @@ import CollaboratorsList from "./CollaboratorsList/CollaboratorsList";
 
 const CollaboratorsPage: React.FC = () => {
     return (
-        <div>
+        <>
             <CollaboratorsList/>
-        </div>
+        </>
     );
 };
 
