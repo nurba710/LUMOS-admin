@@ -5,17 +5,10 @@ export type RootState = ReturnType <typeof rootReducer>
 export type Appstore = ReturnType<typeof setupStore>
 export type AppDispatch = Appstore['dispatch']
 
-
-export interface todo {
-    id: number,
-    title: string,
-    completed: boolean,
-}
-
 export interface colleague {
     aboutUser: string,
     age: number,
-    avatar: string,
+    avatar: string | undefined,
     background: string,
     education: [],
     languages: [],
@@ -34,10 +27,5 @@ export interface Colleagues {
     colleagues: colleague[]
 }
 
-export interface TodoState {
-    todos: todo[],
-    loading: boolean,
-    error: null | string,
-    count: number,
-}
+
 

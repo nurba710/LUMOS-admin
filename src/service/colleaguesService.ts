@@ -7,7 +7,7 @@ export const colleaguesAPI = createApi({
     baseQuery: fetchBaseQuery({baseUrl: BASE_URL}),
     endpoints:(build) => ({
         fetchColleagues: build.query <colleague[], number>({
-            query: (limit: number = 5) => ({
+            query: () => ({
                 url: 'colleagues',
             })
         })

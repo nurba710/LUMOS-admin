@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import {ItemWrapperType, ItemAvatarType} from "./CollaboratorItemType";
+import {ItemAvatarType} from "./CollaboratorItemType";
 
-export const ItemWrapper = styled.div<ItemWrapperType>`
+export const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -9,14 +9,14 @@ export const ItemWrapper = styled.div<ItemWrapperType>`
   text-align: center;
   border: 2px solid blue;
   border-radius: 10px;
-  width: ${props => props.width || '400px'};
-  height: ${props => props.height || '600px'};
+  width: 400px;
+  height: 600px;
   margin-bottom: 45px;
 `;
 
 export const ItemAvatar = styled.div<ItemAvatarType>`
-  width: ${props => props.width || '400px'};
-  height: ${props => props.height || '400px'};
+  width: 395px;
+  height: 400px;
   background: ${props => props.background};
   padding: 5px;
 `

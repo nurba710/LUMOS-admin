@@ -4,7 +4,7 @@ import {Spinner} from "./LoaderStyle";
 
 
 
-const Loader: React.FC<SpinnerType> = ({width, height}) => {
-    return <Spinner width={width} height={height}/>;
+const Loader: React.FC<SpinnerType> = () => {
+    return <Spinner width='140px' height='140px'/>;
 };
 export default Loader;

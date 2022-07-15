@@ -15,10 +15,10 @@ export const Spinner = styled.div<SpinnerType>`
   animation: ${rotate360} 1s linear infinite;
   transform: translateZ(0);
   
-  border-top: 2px solid cornflowerblue;
-  border-right: 2px solid cornflowerblue;
-  border-bottom: 2px solid cornflowerblue;
-  border-left: 4px solid blue;
+  border-top: ${props => props.borderTop || '2px solid cornflowerblue'} ;
+  border-right: ${props => props.borderRight || '2px solid cornflowerblue'} ;
+  border-bottom: ${props => props.borderBottom || '2px solid cornflowerblue'} ;
+  border-left: ${props => props.borderLeft || '4px solid blue'};
   background: transparent;
   margin: 50px auto;
   width: ${props => props.width || '24px'};

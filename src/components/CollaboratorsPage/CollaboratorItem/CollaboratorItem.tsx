@@ -7,24 +7,38 @@ interface collaboratorItemProps {
 }
 
 const CollaboratorItem: React.FC<collaboratorItemProps> = ({colleague}) => {
+    const {
+        avatar,
+        name,
+        age,
+        __v,
+        _id,
+        background,
+        startWork,
+        workExp,
+        position,
+        userName,
+        userId,
+        aboutUser,
+        skills,
+        languages,
+        education
+    } = colleague
     return (
-        <ItemWrapper
-            width=''
-            height=''>
+        <ItemWrapper>
             <ItemAvatar
-                height='400px'
-                width='395px'
-                background={`url(${colleague.avatar}) 0 0/ cover no-repeat`}
+                background={avatar !== undefined ? `url(${avatar}) 0 0/ cover no-repeat`
+                    : 'url(https://cdn2.vectorstock.com/i/1000x1000/95/96/faceless-businessman-icon-vector-10459596.jpg) 0 0/ cover no-repeat'}
             />
             <div>
                 <Title>
-                    {colleague.name}
+                    {name}
                 </Title>
                 <Info>
-                    {colleague.age} лет
+                    {age} лет
                 </Info>
                 <Info>
-                    Позиция: {colleague.position}
+                    Позиция: {position}
                 </Info>
             </div>
             <Button>
