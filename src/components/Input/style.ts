@@ -26,7 +26,6 @@ export const InputStyle = styled.input<{
   transition: box-shadow 0.15s ease-in-out;
 
   &:focus {
-    //border: none;
     border-bottom: ${({borderBottom}) => borderBottom};
     box-shadow: 0 1px cadetblue;
   }
