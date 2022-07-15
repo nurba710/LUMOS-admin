@@ -5,11 +5,10 @@ import CollaboratorItem from "../CollaboratorItem/CollaboratorItem";
 import {Flex} from "./Style";
 
 const CollaboratorsList: React.FC = () => {
-    const {data: colleagues, error, isLoading} = colleaguesAPI.useFetchColleaguesQuery(5)
+    const {data: colleagues, isLoading} = colleaguesAPI.useFetchColleaguesQuery(5)
     return (
         <Flex>
-            {isLoading && <Loader width='140px'
-                                  height='140px'/>}
+            {isLoading && <Loader/>}
             {colleagues?.map(colleague =>
                 <CollaboratorItem colleague={colleague} key={colleague.userId}/>
           )}

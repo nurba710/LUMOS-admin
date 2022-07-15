@@ -11,14 +11,14 @@ const rotate360 = keyframes`
   }
 `;
 
-export const Spinner = styled.div<SpinnerType>`
+export const Spinner = styled.div<Partial<SpinnerType>>`
   animation: ${rotate360} 1s linear infinite;
   transform: translateZ(0);
   
-  border-top: ${props => props.borderTop || '2px solid cornflowerblue'} ;
-  border-right: ${props => props.borderRight || '2px solid cornflowerblue'} ;
-  border-bottom: ${props => props.borderBottom || '2px solid cornflowerblue'} ;
-  border-left: ${props => props.borderLeft || '4px solid blue'};
+  border-top: ${props => props.borderInner || '2px solid cornflowerblue'} ;
+  border-right: ${props => props.borderInner || '2px solid cornflowerblue'} ;
+  border-bottom: ${props => props.borderInner || '2px solid cornflowerblue'} ;
+  border-left: ${props => props.borderSpin || '4px solid blue'};
   background: transparent;
   margin: 50px auto;
   width: ${props => props.width || '24px'};

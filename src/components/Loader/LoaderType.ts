@@ -1,8 +1,6 @@
 export interface SpinnerType {
-    width?: string,
-    height?:string,
-    borderTop?: string,
-    borderRight?: string,
-    borderLeft?: string,
-    borderBottom?: string
+    width: string,
+    height: string,
+    borderInner: string,
+    borderSpin: string,
 }
