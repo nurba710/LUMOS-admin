@@ -16,7 +16,6 @@ export const ButtonStyle = styled.button<{
   color: ${({color}) => color};
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   cursor: pointer;
 
   &:hover {
