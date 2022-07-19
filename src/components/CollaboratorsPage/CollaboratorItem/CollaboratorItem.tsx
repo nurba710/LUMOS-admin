@@ -1,11 +1,11 @@
 import React from 'react';
 import {ItemWrapper, ItemAvatar, Title, Info, Button} from "./CollaboratorItemStyle";
-import {colleague} from "../../../storeToolkit/Types";
+import {colleagueType} from "../../../storeToolkit/Types";
 import {ageHelper} from "../../../common/helper/ageHelper";
 import {defaultAvatar} from "../../../common/consts/auth.const";
 
 interface collaboratorItemProps {
-    colleague: colleague
+    colleague: colleagueType
 }
 
 const CollaboratorItem: React.FC<collaboratorItemProps> = ({colleague}) => {

@@ -5,7 +5,7 @@ export type RootState = ReturnType <typeof rootReducer>
 export type Appstore = ReturnType<typeof setupStore>
 export type AppDispatch = Appstore['dispatch']
 
-export interface colleague {
+export interface colleagueType {
     aboutUser: string,
     age: number,
     avatar: string | undefined,
@@ -24,7 +24,7 @@ export interface colleague {
 }
 
 export interface Colleagues {
-    colleagues: colleague[]
+    colleagues: colleagueType[]
 }
 
 
