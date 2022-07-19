@@ -4,10 +4,13 @@ export const Flex = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
+  background-color: aliceblue;
 `
 
 export const Card = styled.div`
-  margin: 80px;
+  margin: 50px;
 `
 
 export const CardImg = styled.img`

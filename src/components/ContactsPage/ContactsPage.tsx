@@ -1,26 +1,28 @@
 import React from 'react';
-import {Content, FormContact, FormFeedBack} from "./style";
+import {Content, FormContact, FormFeedBack, HStyle, SpanStyle, PStyle, HStyle2} from "./style";
+import Input from "../Input/Input";
+import Button from "../Button/Button";
 
 const ContactsPage = () => {
     return (
         <>
             <Content>
                 <FormContact>
-                    <h3>МЕСТО РАСПОЛОЖЕНИЯ</h3>
-                    <span>4 мкр</span>
-                    <p>хата руса</p>
+                    <HStyle>МЕСТО РАСПОЛОЖЕНИЯ</HStyle>
+                    <SpanStyle>4 мкр</SpanStyle>
+                    <PStyle>хата руса</PStyle>
 
-                    <h3>ПОДПИСЫВАЙТЕСЬ НА НАС</h3>
-                    <span>ИКОНКИ</span>
-                    <p>2022 Политика конфиденциальности</p>
+                    <HStyle>ПОДПИСЫВАЙТЕСЬ НА НАС</HStyle>
+                    <SpanStyle>ИКОНКИ</SpanStyle>
+                    <PStyle>2022 Политика конфиденциальности</PStyle>
                 </FormContact>
 
                 <FormFeedBack>
-                    <h2>Форма обратной связи</h2>
-                    <input type="text" placeholder="Enter your Name"/>
-                    <input type="text" placeholder="Enter a valid email address"/>
-                    <input type="text" placeholder="Enter your message"/>
-                    <button>ПРЕДСТАВЛЯТЬ НА РАССМОТРЕНИЕ</button>
+                    <HStyle2>Форма обратной связи</HStyle2>
+                    <Input margin='15px 50px' width='350px' value='' onChange={()=> console.log('nynbtybyt')} placeholder="Enter your Name"/>
+                    <Input margin='15px 50px' width='350px' value='' onChange={()=> console.log('nynbtybyt')} placeholder="Enter a valid email address"/>
+                    <Input margin='15px 50px' width='350px' value='' onChange={()=> console.log('nynbtybyt')} placeholder="Enter your message"/>
+                    <Button margin='15px 50px' backgroundHover='#ff9900' width='350px' type='submit' onClick={()=> console.log('3213')} name="ПРЕДСТАВЛЯТЬ НА РАССМОТРЕНИЕ"/>
                 </FormFeedBack>
             </Content>
         </>

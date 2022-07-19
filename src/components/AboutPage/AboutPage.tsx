@@ -1,10 +1,11 @@
 import React from 'react';
-import {Cntr} from "./style";
+import {Cntr, Flex} from "./style";
 
 const AboutPage = () => {
     return (
         <Cntr>
-            <div>
+            <Flex>
+                <img src='https://beltranssat.by/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2020/07/top-10.jpg.webp' alt="page"/>
                 <h1>О нас</h1>
                 <span>
                     Идея создания нашей команды возникла на почве желания помочь усовершенствовать бизнес-процессы наших текущих и потенциальных клиентов.
@@ -22,8 +23,11 @@ const AboutPage = () => {
                 <li>Внедрение корпоративных порталов Битрикс24</li>
                 <li>GPS контроль транспорта и топлива</li>
                 <li>Разработка веб-сайтов</li>
-            </div>
-            <div>
+            </Flex>
+
+            <img src='https://sdvv.ru/upload/iblock/de6/de63c45c3ae808039c93fd88c8abfef6.jpg' alt="page"/>
+
+            <Flex>
                 <h2>Наша философия</h2>
                 <span>Чтобы лучше понять, что мы за люди и как стараемся работать, возможно, лучшим вариантом будет привести такие тезисы, которых мы стараемся придерживаться:</span>
                 <li>Нет ничего более постоянного, чем временное — лучше сразу сделать так, как надо.</li>
@@ -44,7 +48,8 @@ const AboutPage = () => {
                     очень беспокоимся о том, что бы их было минимальное количество, потому в своей работе полагаемся не
                     только на свои знания, но и на знания и опыт наших партнеров или поставщиков.
                 </li>
-            </div>
+            </Flex>
+            <img src='https://wdk.com.ua/files/images/m_pic_2.jpeg' alt="page"/>
         </Cntr>
     );
 };
