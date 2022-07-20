@@ -1,13 +1,10 @@
-import React from 'react';
-import CollaboratorsList from './CollaboratorsList/CollaboratorsList';
+import React from 'react'
+import CollaboratorsList from './CollaboratorsList/CollaboratorsList'
 
-const CollaboratorsPage: React.FC = () => {
-  console.log('awdwad')
-    return (
-        <>
-            <CollaboratorsList/>
-        </>
-    );
-};
+const CollaboratorsPage: React.FC = () => (
+	<>
+		<CollaboratorsList />
+	</>
+)
 
-export default CollaboratorsPage;
+export default CollaboratorsPage

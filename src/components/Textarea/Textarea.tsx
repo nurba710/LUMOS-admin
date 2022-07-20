@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextareaStyle} from "./style";
+import {TextareaStyle} from './style';
 
 export interface TextareaProps {
   width?: string;
