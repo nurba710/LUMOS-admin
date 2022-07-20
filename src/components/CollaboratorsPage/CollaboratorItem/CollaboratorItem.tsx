@@ -10,7 +10,7 @@ interface collaboratorItemProps {
 
 const CollaboratorItem: React.FC<collaboratorItemProps> = ({ colleague }) => {
 	const { avatar, name, age, position } = colleague
-	console.log('dwad')
+	const x = 0;
 	return (
 		<ItemWrapper>
 			<ItemAvatar background={`url(${avatar || defaultAvatar}) 0 0/ cover no-repeat`} />
