@@ -21,8 +21,7 @@
       "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"]
     }],
     "no-unused-vars": "warn",
-    "no-plusplus": "off",
-    "arrow-body-style": "warn"
+    "no-plusplus": "off"
   },
   "plugins": [
     "prettier"
