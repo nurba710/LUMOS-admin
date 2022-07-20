@@ -31,9 +31,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "pre-commit": "lint-staged",
-    "eslint": "node_modules/.bin/eslint src/"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -61,7 +59,11 @@
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1"
   },
-
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "node_modules/.bin/eslint --max-warnings=0",
