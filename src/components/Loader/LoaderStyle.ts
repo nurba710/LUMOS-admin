@@ -1,5 +1,5 @@
-import styled, {keyframes} from "styled-components";
-import {SpinnerType} from "./LoaderType";
+import styled, {keyframes} from 'styled-components';
+import {SpinnerType} from './LoaderType';
 
 
 const rotate360 = keyframes`

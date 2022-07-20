@@ -1,5 +1,5 @@
 import React from 'react';
-import CollaboratorsList from "./CollaboratorsList/CollaboratorsList";
+import CollaboratorsList from './CollaboratorsList/CollaboratorsList';
 
 const CollaboratorsPage: React.FC = () => {
     return (

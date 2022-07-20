@@ -1,5 +1,5 @@
-import React from "react";
-import {InputStyle} from "./style";
+import React from 'react';
+import {InputStyle} from './style';
 
 export interface InputProps {
   width?: string;
