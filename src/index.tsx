@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 // local
-import {App} from './pages/App';
+import { App } from './pages/App';
 import reportWebVitals from './reportWebVitals';
-import {store} from "./storeToolkit/index";
+import {store} from "./storeToolkit";
 import {Provider} from "react-redux";
 import {Global} from "./Style";
 
