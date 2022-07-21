@@ -17,6 +17,7 @@ export const FormContact = styled.div`
 export const FormFeedBack = styled.div`
   width: 600px;
   height: 500px;
+  padding: 0 0 0 50px;
   background-color: #689CD2;
   display: flex;
   flex-direction: column;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FocusEventHandler} from "react";
 import {InputStyle} from "./style";
 
 export interface InputProps {
@@ -9,7 +9,7 @@ export interface InputProps {
     fontSize?: string;
     background?: string;
     placeholder: string;
-    type?: 'text' | 'password' | 'radio' | 'checkbox' | 'number';
+    type?: 'text' | 'password' | 'radio' | 'checkbox' | 'number' | 'email';
     placeholderColor?: string;
     onChange: (e: React.FormEvent<HTMLInputElement>) => void;
     borderBottom?: string;
@@ -17,6 +17,7 @@ export interface InputProps {
     name?: string;
     id?: string;
     label?: string;
+    onBlur?: FocusEventHandler<HTMLInputElement>;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -31,10 +32,11 @@ const Input: React.FC<InputProps> = ({
                                          type = "text",
                                          placeholder,
                                          fontSize = '15px',
-                                         color = 'Blue',
+                                         color = 'black',
                                          background = 'white',
                                          borderBottom = '1px solid cornflowerblue',
-                                         placeholderColor = 'cornflowerblue'
+                                         placeholderColor = 'cornflowerblue',
+                                        onBlur,
                                      }) => {
     return (
         <>
@@ -45,7 +47,9 @@ const Input: React.FC<InputProps> = ({
                 placeholder={placeholder}
                 width={width} background={background} height={height}
                 fontSize={fontSize}
-                color={color}>
+                color={color}
+                onBlur={onBlur}
+            >
             </InputStyle>
         </>
     );

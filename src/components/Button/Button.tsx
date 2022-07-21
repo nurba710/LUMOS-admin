@@ -11,7 +11,8 @@ export interface ButtonProps {
     type: 'submit' | 'reset';
     height?: string;
     onClick: () => void;
-    transitionDurationHover?: string
+    transitionDurationHover?: string;
+    disabled: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,10 +26,11 @@ const Button: React.FC<ButtonProps> = ({
                                            onClick,
                                            color = 'white',
                                            backgroundHover = '#3e8e41',
+                                            disabled,
                                        }) => {
         return (
             <ButtonStyle type={type} transitionDurationHover={transitionDurationHover} width={width} margin={margin}
-                         height={height}
+                         height={height} disabled={disabled}
                          backgroundHover={backgroundHover} background={background} color={color} onClick={onClick}>
                 {name}
             </ButtonStyle>
