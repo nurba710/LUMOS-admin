@@ -1,10 +1,17 @@
 import styled from "styled-components";
+import {COLORS} from "../../common/consts/colors.const";
 
 export const FooterStyle = styled.div`
-  background-color: #689CD2;
+  background-color: ${COLORS.SKY_BLUE};
   position: relative;
   bottom: 0;
   padding: 70px 0;
+`
+
+export const FooterLinks = styled.ul `
+`
+
+export const FooterListLinks = styled.li `
 `
 
 export const Block = styled.div`
@@ -25,7 +32,7 @@ export const Column = styled.div`
 
 export const HeadLines = styled.h4`
   font-size: 18px;
-  color: #fff;
+  color: ${COLORS.WHITE};
   text-transform: capitalize;
   margin-bottom: 35px;
   font-weight: 500;
@@ -36,7 +43,7 @@ export const HeadLines = styled.h4`
     position: absolute;
     left: 0;
     bottom: -10px;
-    background-color: #ff9900;
+    background-color: ${COLORS.ORANGE};
     height: 2px;
     box-sizing: border-box;
     width: 50px;
@@ -50,14 +57,14 @@ export const Ul = styled.ul`
 export const ListLinks = styled.a`
   font-size: 16px;
   text-transform: capitalize;
-  color: #fff;
+  color: ${COLORS.WHITE};
   text-decoration: none;
   font-weight: 300;
   display: block;
   transition: all 0.3s ease;
 
   :hover {
-    color: #ff9900;
+    color: ${COLORS.ORANGE};
     padding-left: 8px;
   }
 `
@@ -66,24 +73,24 @@ export const SocialLink = styled.div`
   display: inline-block;
   height: 40px;
   width: 40px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: ${COLORS.WHITE_GRAY};
   margin: 0 10px 10px 0;
   text-align: center;
   line-height: 40px;
   border-radius: 50%;
-  color: #fff;
+  color: ${COLORS.WHITE};
   transition: all 0.5s ease;
   
   :hover {
-    color: #ff9900;
-    background-color: #fff;
+    color: ${COLORS.ORANGE};
+    background-color: ${COLORS.WHITE};
   }
 
 `
 
 
 export const TextP = styled.p`
-  color: #fff;
+  color: ${COLORS.WHITE};
   text-align: center;
   margin-top: 50px;
 `

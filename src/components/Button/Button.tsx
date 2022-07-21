@@ -8,11 +8,11 @@ export interface ButtonProps {
     margin?: string;
     backgroundHover?: string;
     width?: string;
-    type: 'submit' | 'reset';
+    type?: 'submit' | 'reset';
     height?: string;
     onClick: () => void;
     transitionDurationHover?: string;
-    disabled: boolean;
+    disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({

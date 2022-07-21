@@ -1,5 +1,17 @@
 import React from 'react';
-import {Block, Column, FooterStyle, Row, TextP, HeadLines, Ul, ListLinks, SocialLink} from './style'
+import {
+    Block,
+    Column,
+    FooterStyle,
+    Row,
+    TextP,
+    HeadLines,
+    Ul,
+    ListLinks,
+    SocialLink,
+    FooterLinks,
+    FooterListLinks
+} from './style'
 
 const Footer = () => {
     return (
@@ -8,31 +20,31 @@ const Footer = () => {
                 <Row>
                     <Column>
                         <HeadLines>company</HeadLines>
-                        <Ul>
-                            <li><ListLinks>about us</ListLinks></li>
-                            <li><ListLinks>our service</ListLinks></li>
-                            <li><ListLinks>privacy policy</ListLinks></li>
-                            <li><ListLinks>affiliate program</ListLinks></li>
-                        </Ul>
+                        <FooterLinks>
+                            <FooterListLinks><ListLinks>about us</ListLinks></FooterListLinks>
+                            <FooterListLinks><ListLinks>our service</ListLinks></FooterListLinks>
+                            <FooterListLinks><ListLinks>privacy policy</ListLinks></FooterListLinks>
+                            <FooterListLinks><ListLinks>affiliate program</ListLinks></FooterListLinks>
+                        </FooterLinks>
                     </Column>
                     <Column>
                         <HeadLines>get help</HeadLines>
-                        <Ul>
-                            <li><ListLinks>FAQ</ListLinks></li>
-                            <li><ListLinks>shipping</ListLinks></li>
-                            <li><ListLinks>returns</ListLinks></li>
-                            <li><ListLinks>order status</ListLinks></li>
-                            <li><ListLinks>payment options</ListLinks></li>
-                        </Ul>
+                        <FooterLinks>
+                            <FooterListLinks><ListLinks>FAQ</ListLinks></FooterListLinks>
+                            <FooterListLinks><ListLinks>shipping</ListLinks></FooterListLinks>
+                            <FooterListLinks><ListLinks>returns</ListLinks></FooterListLinks>
+                            <FooterListLinks><ListLinks>order status</ListLinks></FooterListLinks>
+                            <FooterListLinks><ListLinks>payment options</ListLinks></FooterListLinks>
+                        </FooterLinks>
                     </Column>
                     <Column>
                         <HeadLines>online shop</HeadLines>
-                        <Ul>
-                            <li><ListLinks>watch</ListLinks></li>
-                            <li><ListLinks>bag</ListLinks></li>
-                            <li><ListLinks>shoes</ListLinks></li>
-                            <li><ListLinks>dress</ListLinks></li>
-                        </Ul>
+                        <FooterLinks>
+                            <FooterListLinks><ListLinks>watch</ListLinks></FooterListLinks>
+                            <FooterListLinks><ListLinks>bag</ListLinks></FooterListLinks>
+                            <FooterListLinks><ListLinks>shoes</ListLinks></FooterListLinks>
+                            <FooterListLinks><ListLinks>dress</ListLinks></FooterListLinks>
+                        </FooterLinks>
                     </Column>
                     <Column>
                         <HeadLines>follow us</HeadLines>

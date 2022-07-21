@@ -1,20 +1,21 @@
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
+import {COLORS} from "../../common/consts/colors.const";
 
 export const HeaderStyled = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background: #689CD2;
-  color: #fff;
+  background: ${COLORS.SKY_BLUE};
+  color: ${COLORS.WHITE};
 `
 
 export const HeaderNavigate = styled(NavLink)`
-  color: #fff;
+  color: ${COLORS.WHITE};
   text-decoration: none;
 
   &.is-active {
-    color: black;
+    color: ${COLORS.BLACK};
   }
 `
 
@@ -35,8 +36,8 @@ export const HeaderItem = styled.div`
   transition: color .3s linear;
 
   :hover {
-    color: #ff9900;
-    border-bottom-color: #ff9900;
+    color: ${COLORS.ORANGE};
+    border-bottom-color: ${COLORS.ORANGE};
   }
 `
 
@@ -44,4 +45,3 @@ export const HeaderSection = styled.div`
   display: flex;
   align-items: center;
 `
-
