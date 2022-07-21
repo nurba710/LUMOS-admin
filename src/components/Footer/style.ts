@@ -11,9 +11,6 @@ export const FooterStyle = styled.div`
 export const FooterLinks = styled.ul `
 `
 
-export const FooterListLinks = styled.li `
-`
-
 export const Block = styled.div`
   max-width: 1170px;
   margin: auto;

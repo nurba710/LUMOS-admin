@@ -10,7 +10,6 @@ import {
     ListLinks,
     SocialLink,
     FooterLinks,
-    FooterListLinks
 } from './style'
 
 const Footer = () => {
@@ -21,29 +20,29 @@ const Footer = () => {
                     <Column>
                         <HeadLines>company</HeadLines>
                         <FooterLinks>
-                            <FooterListLinks><ListLinks>about us</ListLinks></FooterListLinks>
-                            <FooterListLinks><ListLinks>our service</ListLinks></FooterListLinks>
-                            <FooterListLinks><ListLinks>privacy policy</ListLinks></FooterListLinks>
-                            <FooterListLinks><ListLinks>affiliate program</ListLinks></FooterListLinks>
+                            <ListLinks>about us</ListLinks>
+                            <ListLinks>our service</ListLinks>
+                            <ListLinks>privacy policy</ListLinks>
+                            <ListLinks>affiliate program</ListLinks>
                         </FooterLinks>
                     </Column>
                     <Column>
                         <HeadLines>get help</HeadLines>
                         <FooterLinks>
-                            <FooterListLinks><ListLinks>FAQ</ListLinks></FooterListLinks>
-                            <FooterListLinks><ListLinks>shipping</ListLinks></FooterListLinks>
-                            <FooterListLinks><ListLinks>returns</ListLinks></FooterListLinks>
-                            <FooterListLinks><ListLinks>order status</ListLinks></FooterListLinks>
-                            <FooterListLinks><ListLinks>payment options</ListLinks></FooterListLinks>
+                            <ListLinks>FAQ</ListLinks>
+                            <ListLinks>shipping</ListLinks>
+                            <ListLinks>returns</ListLinks>
+                            <ListLinks>order status</ListLinks>
+                            <ListLinks>payment options</ListLinks>
                         </FooterLinks>
                     </Column>
                     <Column>
                         <HeadLines>online shop</HeadLines>
                         <FooterLinks>
-                            <FooterListLinks><ListLinks>watch</ListLinks></FooterListLinks>
-                            <FooterListLinks><ListLinks>bag</ListLinks></FooterListLinks>
-                            <FooterListLinks><ListLinks>shoes</ListLinks></FooterListLinks>
-                            <FooterListLinks><ListLinks>dress</ListLinks></FooterListLinks>
+                            <ListLinks>watch</ListLinks>
+                            <ListLinks>bag</ListLinks>
+                            <ListLinks>shoes</ListLinks>
+                            <ListLinks>dress</ListLinks>
                         </FooterLinks>
                     </Column>
                     <Column>
