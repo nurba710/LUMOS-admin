@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const InputStyle = styled.input<{
   width?: string;
   color?: string;
+  margin?: string;
   height?: string;
   fontSize?: string;
   background?: string;
@@ -16,7 +17,7 @@ export const InputStyle = styled.input<{
   color: ${({color}) => color};
   padding: 10px 5px;
   font-family: inherit;
-  margin: 40px 25px;
+  margin: ${({margin}) => margin};
   box-sizing: border-box;
   border: none;
   outline: none;

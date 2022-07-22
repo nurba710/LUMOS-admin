@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
 export const ButtonStyle = styled.button<{
-  background?: string;
-  color?: string;
-  backgroundHover?: string;
-  width?: string;
-  height?: string;
-  transitionDurationHover?: string;
+    background?: string;
+    color?: string;
+    margin?: string;
+    backgroundHover?: string;
+    width?: string;
+    height?: string;
+    transitionDurationHover?: string;
 }>`
   width: ${({width}) => width};
   height: ${({height}) => height};
+  margin: ${({margin}) => margin};
   border-radius: 9.2px;
   background: ${({background}) => background};
   border: none;
@@ -23,4 +25,3 @@ export const ButtonStyle = styled.button<{
     transition-duration: ${({transitionDurationHover}) => transitionDurationHover};
   }
 `;
-
