@@ -1,5 +1,5 @@
-import React, {FocusEventHandler} from "react";
-import {InputStyle} from "./style";
+import React, {FocusEventHandler} from 'react';
+import {InputStyle} from './style';
 
 export interface InputProps {
     width?: string;
@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({
                                          id,
                                          name,
                                          onChange,
-                                         type = "text",
+                                         type = 'text',
                                          placeholder,
                                          fontSize = '15px',
                                          color = 'black',

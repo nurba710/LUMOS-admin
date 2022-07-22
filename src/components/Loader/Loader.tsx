@@ -1,6 +1,6 @@
 import React from 'react';
-import {SpinnerType} from "./LoaderType";
-import {Spinner} from "./LoaderStyle";
+import {SpinnerType} from './LoaderType';
+import {Spinner} from './LoaderStyle';
 
 
 const Loader: React.FC<Partial<SpinnerType>> = ({

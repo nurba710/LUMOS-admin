@@ -1,4 +1,4 @@
-import {rootReducer, setupStore} from "./index";
+import {rootReducer, setupStore} from './index';
 
 
 export type RootState = ReturnType <typeof rootReducer>

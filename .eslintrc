@@ -1,0 +1,29 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "react-app",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": "error",
+    "quotes": ["warn", "single"],
+    "no-debugger": "warn",
+    "no-alert": "warn",
+    "no-duplicate-imports": "warn",
+    "max-len": ["warn", 120, {"ignoreUrls": true}],
+    "prefer-const": "error",
+    "no-var": "error",
+    "import/order": ["warn", {
+      "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"]
+    }],
+    "no-unused-vars": "warn",
+    "no-plusplus": "off"
+  },
+  "plugins": [
+    "prettier"
+  ]
+}

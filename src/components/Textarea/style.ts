@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const TextareaStyle = styled.textarea<{
   width?: string;
