@@ -1,17 +1,13 @@
-import React from 'react';
-import GlobalStyle from '../globalStyle';
-import AppRouter from '../router/AppRouter';
-import TodoList from "../components/TodoList";
-import Counter from "../components/Counter";
+import React from 'react'
+import GlobalStyle from '../globalStyle'
+import AppRouter from '../router/AppRouter'
 
 export const App = () => {
-
-    return (
-        <div className="App">
-            <Counter/>
-            <TodoList/>
-            <GlobalStyle/>
-            <AppRouter/>
-        </div>
-    );
-};
+	console.log('dwad')
+	return (
+		<div className='App'>
+			<GlobalStyle />
+			<AppRouter />
+		</div>
+	)
+}
