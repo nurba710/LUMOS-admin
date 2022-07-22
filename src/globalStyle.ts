@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
   *,
@@ -78,4 +78,4 @@ export default createGlobalStyle`
     url('./common/fonts/inter');
     font-family: 'Inter', sans-serif;
   }
-`;
+`
