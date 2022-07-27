@@ -66,9 +66,9 @@
     "prettier": "^2.7.1"
   },
   "lint-staged": {
-    "*.{ts,tsx}" : [
+    "*.{ts,tsx}": [
       "eslint --fix",
       "prettier --write"
-      ]
+    ]
   }
 }

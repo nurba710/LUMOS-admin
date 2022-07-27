@@ -8,10 +8,10 @@ export interface InputProps {
 	height?: string
 	fontSize?: string
 	background?: string
-	placeholder: string
+	placeholder?: string
 	type?: 'text' | 'password' | 'radio' | 'checkbox' | 'number' | 'email'
 	placeholderColor?: string
-	onChange: (e: React.FormEvent<HTMLInputElement>) => void
+	onChange?: (e: React.FormEvent<HTMLInputElement>) => void
 	borderBottom?: string
 	value: string
 	name?: string
@@ -55,8 +55,7 @@ const Input: React.FC<InputProps> = ({
 				height={height}
 				fontSize={fontSize}
 				color={color}
-				onBlur={onBlur}
-			></InputStyle>
+				onBlur={onBlur}></InputStyle>
 		</>
 	)
 }
