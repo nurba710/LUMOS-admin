@@ -3,36 +3,29 @@ import { Formik } from 'formik'
 import { Error, FormContainer, FormTitle, InputContainer } from './Style'
 import Input from '../Input/Input'
 import { ButtonStyle } from '../Button/style'
-import * as yup from 'yup'
 import { useChangePasswordPOSTMutation } from '../../service/ChangePassword'
 import { NavLink } from 'react-router-dom'
-
-interface valuesType {
-	password_new: string
-	password_old: string
-}
+import { AdminRoutePath } from '../../common/consts/routes.const'
+import { ChangePasswordValuesType } from './Types'
+import { PasswordInitialValues } from '../../common/consts/InitialValues'
+import { PasswordValidationSchema } from './Validation'
 
 const ChangePassword: React.FC = () => {
-	const validationSchema = yup.object().shape({
-		password_new: yup.string().required('Обязательное поле'),
-		password_old: yup.string().required('Обязательное поле'),
-	})
-
 	const [change] = useChangePasswordPOSTMutation()
 
-	const handleSubmit = async (values: valuesType) => {
-		await change(values).unwrap()
+	const handleSubmit = (values: ChangePasswordValuesType) => {
+		change(values).unwrap()
 	}
 
 	return (
 		<Formik
 			initialValues={{
-				password_new: '',
-				password_old: '',
+				password_new: PasswordInitialValues.NEW,
+				password_old: PasswordInitialValues.OLD,
 			}}
 			validateOnBlur
 			onSubmit={handleSubmit}
-			validationSchema={validationSchema}>
+			validationSchema={PasswordValidationSchema}>
 			{({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
 				<FormContainer onSubmit={handleSubmit}>
 					<FormTitle> LUMOS </FormTitle>
@@ -59,7 +52,7 @@ const ChangePassword: React.FC = () => {
 					<ButtonStyle width='120px' height='50px' disabled={!isValid && !dirty} type={'submit'}>
 						Change Password
 					</ButtonStyle>
-					<NavLink to='/success'>Вернуться на главную страницу</NavLink>
+					<NavLink to={AdminRoutePath.HOME_PAGE}>Вернуться на главную страницу</NavLink>
 				</FormContainer>
 			)}
 		</Formik>

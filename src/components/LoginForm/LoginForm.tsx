@@ -8,17 +8,12 @@ import * as yup from 'yup'
 import { getStorage, setStorage } from '../../common/services/storage.service'
 import { TOKEN } from '../../common/consts/auth.const'
 import { useNavigate } from 'react-router-dom'
-
-interface valuesType {
-	username: string
-	password: string
-}
+import { AdminRoutePath } from '../../common/consts/routes.const'
+import { LoginValuesType } from './Types'
+import { LoginInitialValues } from '../../common/consts/InitialValues'
+import { LoginValidationSchema } from './Validation'
 
 const LoginForm: React.FC = () => {
-	const validationSchema = yup.object().shape({
-		username: yup.string().required('Обязательное поле'),
-		password: yup.string().required('Обязательное поле'),
-	})
 	const navigate = useNavigate()
 
 	const [login, { data }] = useLoginPOSTMutation()
@@ -31,25 +26,25 @@ const LoginForm: React.FC = () => {
 
 	useEffect(() => {
 		if (token) {
-			navigate('/success')
+			navigate(AdminRoutePath.HOME_PAGE)
 		} else {
-			navigate('/')
+			navigate(AdminRoutePath.LOGIN_PAGE)
 		}
 	}, [navigate, token, data])
 
-	const handleSubmit = async (values: valuesType) => {
-		await login(values).unwrap()
+	const handleSubmit = (values: LoginValuesType) => {
+		login(values).unwrap()
 	}
 
 	return (
 		<Formik
 			initialValues={{
-				username: '',
-				password: '',
+				username: LoginInitialValues.USER_NAME,
+				password: LoginInitialValues.PASSWORD,
 			}}
 			validateOnBlur
 			onSubmit={handleSubmit}
-			validationSchema={validationSchema}>
+			validationSchema={LoginValidationSchema}>
 			{({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
 				<FormContainer onSubmit={handleSubmit}>
 					<FormTitle> LUMOS </FormTitle>
