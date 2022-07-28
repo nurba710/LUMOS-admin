@@ -7,18 +7,18 @@ const Header = () => {
 	return (
 		<HeaderStyled>
 			<HeaderLogo>
-				<HeaderNavigate to={ERoutePath.HOME_PAGE}>LUMOS</HeaderNavigate>
+				<HeaderNavigate to={'#'}>LUMOS</HeaderNavigate>
 			</HeaderLogo>
 			<HeaderSection>
 				{headerLinks.map(item => (
-					<HeaderNavigate to={`${ERoutePath.HOME_PAGE}${item.link}`}>
+					<HeaderNavigate to={`${'#'}${item.link}`}>
 						<HeaderItem>{item.name}</HeaderItem>
 					</HeaderNavigate>
 				))}
 			</HeaderSection>
 			<HeaderSection>
 				<HeaderItem>
-					<HeaderNavigate to={ERoutePath.REGISTER}>Войти</HeaderNavigate>
+					<HeaderNavigate to={'#'}>Войти</HeaderNavigate>
 				</HeaderItem>
 			</HeaderSection>
 		</HeaderStyled>

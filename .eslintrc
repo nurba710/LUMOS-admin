@@ -9,7 +9,7 @@
     "prettier"
   ],
   "rules": {
-    "no-console": "error",
+    "no-console": "warn",
     "quotes": ["warn", "single"],
     "no-debugger": "warn",
     "no-alert": "warn",

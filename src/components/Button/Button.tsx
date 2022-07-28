@@ -39,8 +39,7 @@ const Button: React.FC<ButtonProps> = ({
 			backgroundHover={backgroundHover}
 			background={background}
 			color={color}
-			onClick={onClick}
-		>
+			onClick={onClick}>
 			{name}
 		</ButtonStyle>
 	)

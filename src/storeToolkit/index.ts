@@ -1,15 +1,18 @@
 import { combineReducers } from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
-import { colleaguesAPI } from '../service/colleaguesService'
+import { loginAPI } from '../service/login'
+import { changePasswordAPI } from '../service/ChangePassword'
 
 export const rootReducer = combineReducers({
-	[colleaguesAPI.reducerPath]: colleaguesAPI.reducer,
+	[loginAPI.reducerPath]: loginAPI.reducer,
+	[changePasswordAPI.reducerPath]: changePasswordAPI.reducer,
 })
 
 export const setupStore = () => {
 	return configureStore({
 		reducer: rootReducer,
-		middleware: getDefaultMiddleware => getDefaultMiddleware().concat([colleaguesAPI.middleware]),
+		middleware: getDefaultMiddleware =>
+			getDefaultMiddleware().concat([loginAPI.middleware, changePasswordAPI.middleware]),
 	})
 }
 
