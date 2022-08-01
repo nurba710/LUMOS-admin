@@ -9,11 +9,19 @@ export interface InputProps {
 	fontSize?: string
 	background?: string
 	placeholder?: string
-	type?: 'text' | 'password' | 'radio' | 'checkbox' | 'number' | 'email'
+	type?:
+		| 'text'
+		| 'password'
+		| 'radio'
+		| 'checkbox'
+		| 'number'
+		| 'email'
+		| 'date'
+		| 'file'
 	placeholderColor?: string
 	onChange?: (e: React.FormEvent<HTMLInputElement>) => void
 	borderBottom?: string
-	value: string
+	value?: string
 	name?: string
 	id?: string
 	label?: string

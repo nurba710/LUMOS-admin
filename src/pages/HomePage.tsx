@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { AdminRoutePath } from '../common/consts/routes.const'
 
 const HomePage = () => {
 	return (
@@ -18,7 +19,11 @@ const HomePage = () => {
 				}}>
 				<div style={{ fontSize: '24px' }}>Вы успешно залогинились!!!</div>
 				<div style={{ fontSize: '24px' }}>Можете поменять пароль</div>
-				<NavLink to='/change-password'> Сменить пароль</NavLink>
+				<NavLink to={AdminRoutePath.CHANGE_PASSWORD_PAGE}>
+					{' '}
+					Сменить пароль
+				</NavLink>
+				<NavLink to={AdminRoutePath.CREATE_PROFILE}> Создать профиль</NavLink>
 			</div>
 		</div>
 	)

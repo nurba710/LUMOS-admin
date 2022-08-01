@@ -4,7 +4,6 @@ import { ButtonStyle } from '../Button/style'
 import Input from '../Input/Input'
 import { useLoginPOSTMutation } from '../../service/login'
 import { Formik } from 'formik'
-import * as yup from 'yup'
 import { getStorage, setStorage } from '../../common/services/storage.service'
 import { TOKEN } from '../../common/consts/auth.const'
 import { useNavigate } from 'react-router-dom'
@@ -45,7 +44,16 @@ const LoginForm: React.FC = () => {
 			validateOnBlur
 			onSubmit={handleSubmit}
 			validationSchema={LoginValidationSchema}>
-			{({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+			{({
+				values,
+				errors,
+				touched,
+				handleChange,
+				handleBlur,
+				isValid,
+				handleSubmit,
+				dirty,
+			}) => (
 				<FormContainer onSubmit={handleSubmit}>
 					<FormTitle> LUMOS </FormTitle>
 					<InputContainer>
@@ -57,7 +65,9 @@ const LoginForm: React.FC = () => {
 							type={'text'}
 							onBlur={handleBlur}
 						/>
-						{touched.username && errors.username && <Error>{errors.username}</Error>}
+						{touched.username && errors.username && (
+							<Error>{errors.username}</Error>
+						)}
 						<label htmlFor={'password'}> Password</label>
 						<Input
 							onChange={handleChange}
@@ -66,9 +76,15 @@ const LoginForm: React.FC = () => {
 							type={'password'}
 							onBlur={handleBlur}
 						/>
-						{touched.password && errors.password && <Error>{errors.password}</Error>}
+						{touched.password && errors.password && (
+							<Error>{errors.password}</Error>
+						)}
 					</InputContainer>
-					<ButtonStyle width='80px' height='30px' disabled={!isValid && !dirty} type={'submit'}>
+					<ButtonStyle
+						width='80px'
+						height='30px'
+						disabled={!isValid && !dirty}
+						type={'submit'}>
 						SIGN IN
 					</ButtonStyle>
 				</FormContainer>

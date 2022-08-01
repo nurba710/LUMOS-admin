@@ -12,4 +12,5 @@ export enum AdminRoutePath {
 	LOGIN_PAGE = '/',
 	CHANGE_PASSWORD_PAGE = 'change-password',
 	HOME_PAGE = '/success',
+	CREATE_PROFILE = '/create-profile',
 }
