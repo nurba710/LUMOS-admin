@@ -10,7 +10,7 @@ export interface ProfileTypes {
 	_id?: string
 }
 
-interface skillsType {
+export interface skillsType {
 	skillName: string
 	grade: string
 	_id?: string
