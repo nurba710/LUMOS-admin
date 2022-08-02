@@ -1,10 +1,6 @@
 import React from 'react'
 import { FieldArray, Formik } from 'formik'
 import {
-	ProfileInitialValue,
-	SkillsValue,
-} from '../../common/consts/InitialValues'
-import {
 	ProfileFormTitle,
 	ProfileError,
 	ProfileFormContainer,
@@ -12,37 +8,29 @@ import {
 	ProfileInputContainer,
 	ProfileSkillContainer,
 } from './Style'
-import { ProfileValidationSchema } from './Validation'
+import { InitialValues, ProfileValidationSchema } from './Validation'
 import { ProfileTypes } from './Types'
 import Input from '../Input/Input'
 import Textarea from '../Textarea/Textarea'
 import Button from '../Button/Button'
 import { useProfilePOSTMutation } from '../../service/ProfileService'
+import { useNavigate } from 'react-router-dom'
+import { AdminRoutePath } from '../../common/consts/routes.const'
+import ProfileInput from './ProfileInput/ProfileInput'
 
 const CreateProfileForm = () => {
-	const [profile] = useProfilePOSTMutation()
+	const [profile, { isSuccess }] = useProfilePOSTMutation()
+	const navigate = useNavigate()
 	const handleSubmit = (values: ProfileTypes) => {
-		console.log(values, 'values')
 		profile(values).unwrap()
+	}
+	if (isSuccess) {
+		navigate(AdminRoutePath.HOME_PAGE)
 	}
 
 	return (
 		<Formik
-			initialValues={{
-				name: ProfileInitialValue.NAME,
-				dateOfBirth: ProfileInitialValue.DATE_OF_BIRTH,
-				aboutUser: ProfileInitialValue.ABOUT_USER,
-				position: ProfileInitialValue.POSITION,
-				startWork: ProfileInitialValue.START_WORK,
-				skills: [
-					{
-						skillName: SkillsValue.SKILL_NAME,
-						grade: SkillsValue.GRADE,
-					},
-				],
-				avatar: ProfileInitialValue.AVATAR,
-				yearsOfWorkExp: ProfileInitialValue.YEARS_OF_WORK_EXP,
-			}}
+			initialValues={InitialValues}
 			onSubmit={handleSubmit}
 			validationSchema={ProfileValidationSchema}>
 			{({ values, errors, handleChange, handleSubmit, isValid }) => {
@@ -59,28 +47,22 @@ const CreateProfileForm = () => {
 				return (
 					<ProfileFormContainer onSubmit={handleSubmit}>
 						<ProfileFormTitle>Регистрация профиля</ProfileFormTitle>
-						<ProfileInputContainer>
-							<ProfileInputTitle>Имя</ProfileInputTitle>
-							<Input
-								onChange={handleChange}
-								name={'name'}
-								value={values.name}
-								type='text'
-								width={'300px'}
-							/>
-							<ProfileError>{name}</ProfileError>
-						</ProfileInputContainer>
-						<ProfileInputContainer>
-							<ProfileInputTitle>День рождения</ProfileInputTitle>
-							<Input
-								onChange={handleChange}
-								name={'dateOfBirth'}
-								value={values.dateOfBirth}
-								type={'date'}
-								width={'200px'}
-							/>
-							<ProfileError>{dateOfBirth}</ProfileError>
-						</ProfileInputContainer>
+						<ProfileInput
+							name='name'
+							value={values.name}
+							handleChange={handleChange}
+							title={'Имя'}
+							type={'text'}
+							error={name}
+						/>
+						<ProfileInput
+							name='dateOfBirth'
+							value={values.dateOfBirth}
+							handleChange={handleChange}
+							title={'День рождения'}
+							type={'date'}
+							error={dateOfBirth}
+						/>
 						<ProfileInputContainer>
 							<ProfileInputTitle>О себе</ProfileInputTitle>
 							<Textarea
@@ -91,44 +73,35 @@ const CreateProfileForm = () => {
 							/>
 							<ProfileError>{aboutUser}</ProfileError>
 						</ProfileInputContainer>
-						<ProfileInputContainer>
-							<ProfileInputTitle>Позиция</ProfileInputTitle>
-							<Input
-								onChange={handleChange}
-								name={'position'}
-								value={values.position}
-								type={'text'}
-								width={'300px'}
-							/>
-							<ProfileError>{position}</ProfileError>
-						</ProfileInputContainer>
-						<ProfileInputContainer>
-							<ProfileInputTitle>Начало работы</ProfileInputTitle>
-							<Input
-								onChange={handleChange}
-								name={'startWork'}
-								value={values.startWork}
-								type={'date'}
-								width={'200px'}
-							/>
-							<ProfileError>{startWork}</ProfileError>
-						</ProfileInputContainer>
-						<ProfileInputContainer>
-							<ProfileInputTitle>Опыт в программиировании</ProfileInputTitle>
-							<Input
-								onChange={handleChange}
-								name={'yearsOfWorkExp'}
-								value={values.yearsOfWorkExp}
-								type={'text'}
-								width={'200px'}
-							/>
-							<ProfileError>{yearsOfWorkExp}</ProfileError>
-						</ProfileInputContainer>
+						<ProfileInput
+							name='position'
+							value={values.position}
+							handleChange={handleChange}
+							title={'Позиция'}
+							type={'text'}
+							error={position}
+						/>
+						<ProfileInput
+							name='startWork'
+							value={values.startWork}
+							handleChange={handleChange}
+							title={'Начало работы'}
+							type={'date'}
+							error={startWork}
+						/>
+						<ProfileInput
+							name='yearsOfWorkExp'
+							value={values.yearsOfWorkExp}
+							handleChange={handleChange}
+							title={'Опыт работы'}
+							type={'text'}
+							error={yearsOfWorkExp}
+						/>
 						<FieldArray name={'skills'}>
 							{({ push, remove }) => (
 								<React.Fragment>
 									<ProfileFormTitle>Навыки</ProfileFormTitle>
-									{values.skills.map((skill, index) => (
+									{values.skills?.map((skill, index) => (
 										<ProfileSkillContainer key={index}>
 											<ProfileInputContainer>
 												<ProfileInputTitle>
@@ -178,19 +151,14 @@ const CreateProfileForm = () => {
 								</React.Fragment>
 							)}
 						</FieldArray>
-						<ProfileInputContainer>
-							<ProfileInputTitle htmlFor={'avatar'}>
-								Фотография для профиля
-							</ProfileInputTitle>
-							<Input
-								onChange={handleChange}
-								name={'avatar'}
-								value={values.avatar}
-								type={'text'}
-								width={'300px'}
-							/>
-							<ProfileError>{avatar}</ProfileError>
-						</ProfileInputContainer>
+						<ProfileInput
+							name='avatar'
+							value={values.avatar}
+							handleChange={handleChange}
+							title={'Фотография для профиля'}
+							type={'text'}
+							error={avatar}
+						/>
 						<Button
 							name={'Сохранить'}
 							type={'submit'}

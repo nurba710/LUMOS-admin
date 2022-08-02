@@ -1,5 +1,9 @@
 import * as yup from 'yup'
 import { array, number, object, string } from 'yup'
+import {
+	ProfileInitialValue,
+	SkillsValue,
+} from '../../common/consts/InitialValues'
 
 export const ProfileValidationSchema = yup.object().shape({
 	name: yup.string().required('Обязательное поле'),
@@ -19,8 +23,26 @@ export const ProfileValidationSchema = yup.object().shape({
 				.max(10, 'Максимальная оценка 10'),
 		})
 	),
-	avatar: string().matches(
-		/((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-		'Введите правильный URL'
-	),
+	avatar: string()
+		.matches(
+			/((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+			'Введите правильный URL'
+		)
+		.required('Обязательное поле'),
 })
+
+export const InitialValues = {
+	name: ProfileInitialValue.NAME,
+	dateOfBirth: ProfileInitialValue.DATE_OF_BIRTH,
+	aboutUser: ProfileInitialValue.ABOUT_USER,
+	position: ProfileInitialValue.POSITION,
+	startWork: ProfileInitialValue.START_WORK,
+	skills: [
+		{
+			skillName: SkillsValue.SKILL_NAME,
+			grade: SkillsValue.GRADE,
+		},
+	],
+	avatar: ProfileInitialValue.AVATAR,
+	yearsOfWorkExp: ProfileInitialValue.YEARS_OF_WORK_EXP,
+}
