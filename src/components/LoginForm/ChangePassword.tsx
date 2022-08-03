@@ -1,23 +1,28 @@
 import React from 'react'
 import { Formik } from 'formik'
-import { Error, FormContainer, FormTitle, InputContainer } from './Style'
+import { NavLink } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 import Input from '../Input/Input'
 import { ButtonStyle } from '../Button/style'
 import { useChangePasswordPOSTMutation } from '../../service/ChangePassword'
-import { NavLink } from 'react-router-dom'
 import { AdminRoutePath } from '../../common/consts/routes.const'
-import { ChangePasswordValuesType } from './Types'
 import { PasswordInitialValues } from '../../common/consts/InitialValues'
+import { ChangePasswordValuesType } from './Types'
+import { Error, FormContainer, FormTitle, InputContainer } from './Style'
 import { PasswordValidationSchema } from './Validation'
 
 const ChangePassword: React.FC = () => {
-	const [change] = useChangePasswordPOSTMutation()
+	const [change, {isLoading, isSuccess,isError}] = useChangePasswordPOSTMutation()
 
 	const handleSubmit = (values: ChangePasswordValuesType) => {
 		change(values).unwrap()
 	}
-
+	isLoading && toast.loading('Loadiing')
+	isSuccess && toast.success('SUCCESS')
+	isError && toast.error('ERROR')
 	return (
+		<>
+			<ToastContainer/>
 		<Formik
 			initialValues={{
 				password_new: PasswordInitialValues.NEW,
@@ -56,6 +61,7 @@ const ChangePassword: React.FC = () => {
 				</FormContainer>
 			)}
 		</Formik>
+		</>
 	)
 }
 

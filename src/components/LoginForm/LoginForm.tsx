@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react'
-import { FormContainer, InputContainer, FormTitle, Error } from './Style'
+import { Formik } from 'formik'
+import { useNavigate } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 import { ButtonStyle } from '../Button/style'
 import Input from '../Input/Input'
 import { useLoginPOSTMutation } from '../../service/login'
-import { Formik } from 'formik'
 import { getStorage, setStorage } from '../../common/services/storage.service'
 import { TOKEN } from '../../common/consts/auth.const'
-import { useNavigate } from 'react-router-dom'
 import { AdminRoutePath } from '../../common/consts/routes.const'
-import { LoginValuesType } from './Types'
 import { LoginInitialValues } from '../../common/consts/InitialValues'
+import { LoginValuesType } from './Types'
+import { FormContainer, InputContainer, FormTitle, Error } from './Style'
 import { LoginValidationSchema } from './Validation'
+import 'react-toastify/dist/ReactToastify.css'
 
 const LoginForm: React.FC = () => {
 	const navigate = useNavigate()
 
-	const [login, { data }] = useLoginPOSTMutation()
+	const [login, { data, isError, isLoading }] = useLoginPOSTMutation()
 
 	useEffect(() => {
 		if (data?.data.token) setStorage(TOKEN, data?.data.token)
@@ -34,8 +36,11 @@ const LoginForm: React.FC = () => {
 	const handleSubmit = (values: LoginValuesType) => {
 		login(values).unwrap()
 	}
-
+	isLoading && toast.loading('Is loadiing')
+	isError && toast.error('ERROR')
 	return (
+		<>
+			<ToastContainer/>
 		<Formik
 			initialValues={{
 				username: LoginInitialValues.USER_NAME,
@@ -90,6 +95,7 @@ const LoginForm: React.FC = () => {
 				</FormContainer>
 			)}
 		</Formik>
+		</>
 	)
 }
 

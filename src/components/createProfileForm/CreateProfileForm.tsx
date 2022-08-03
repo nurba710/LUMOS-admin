@@ -1,5 +1,11 @@
 import React from 'react'
 import { Formik } from 'formik'
+import { useNavigate } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
+import Textarea from '../Textarea/Textarea'
+import Button from '../Button/Button'
+import { useProfilePOSTMutation } from '../../service/ProfileService'
+import { AdminRoutePath } from '../../common/consts/routes.const'
 import {
 	ProfileFormTitle,
 	ProfileError,
@@ -9,26 +15,25 @@ import {
 } from './Style'
 import { InitialValues, ProfileValidationSchema } from './Validation'
 import { ProfileTypes } from './Types'
-import Textarea from '../Textarea/Textarea'
-import Button from '../Button/Button'
-import { useProfilePOSTMutation } from '../../service/ProfileService'
-import { useNavigate } from 'react-router-dom'
-import { AdminRoutePath } from '../../common/consts/routes.const'
 import ProfileInput from './ProfileInput/ProfileInput'
 import FieldArrayComponent from './ProfileInput/FieldArrayComponent'
 
 const CreateProfileForm = () => {
-	const [profile, { isSuccess }] = useProfilePOSTMutation()
+	const [profile, { isSuccess, isError, isLoading }] = useProfilePOSTMutation()
 	const navigate = useNavigate()
 	const handleSubmit = (values: ProfileTypes) => {
-		console.log(values, 'values')
 		profile(values).unwrap()
 	}
 	if (isSuccess) {
 		navigate(AdminRoutePath.HOME_PAGE)
 	}
 
+	isError && toast.error('ERROR')
+	isLoading && toast.loading('Loading')
+
 	return (
+		<>
+			<ToastContainer/>
 		<Formik
 			initialValues={InitialValues}
 			onSubmit={handleSubmit}
@@ -120,6 +125,7 @@ const CreateProfileForm = () => {
 				)
 			}}
 		</Formik>
+		</>
 	)
 }
 

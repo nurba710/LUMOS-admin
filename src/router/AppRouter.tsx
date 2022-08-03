@@ -12,7 +12,7 @@ const AppRouter = () => {
 			<Route path={AdminRoutePath.HOME_PAGE} element={<HomePage />} />
 			<Route path={AdminRoutePath.LOGIN_PAGE} element={<LoginPage />} />
 			<Route
-				path={AdminRoutePath.CHANGE_PASSWORD_PAGE}
+				path={`${AdminRoutePath.HOME_PAGE}/${AdminRoutePath.CHANGE_PASSWORD_PAGE}`}
 				element={<ChangePasswordPage />}
 			/>
 			<Route
