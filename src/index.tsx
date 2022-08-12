@@ -9,14 +9,12 @@ import { store } from './storeToolkit'
 import { Global } from './Style'
 
 ReactDOM.render(
-	<React.StrictMode>
 		<Provider store={store}>
 			<Router>
 				<Global />
 				<App />
 			</Router>
-		</Provider>
-	</React.StrictMode>,
+		</Provider>,
 	document.getElementById('root')
 )
 

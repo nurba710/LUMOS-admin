@@ -8,9 +8,9 @@ export interface ButtonProps {
 	margin?: string
 	backgroundHover?: string
 	width?: string
-	type?: 'submit' | 'reset'
+	type?: 'submit' | 'reset' | 'button'
 	height?: string
-	onClick: () => void
+	onClick?: () => void
 	transitionDurationHover?: string
 	disabled?: boolean
 }

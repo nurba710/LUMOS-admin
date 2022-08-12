@@ -6,7 +6,7 @@ export interface TextareaProps {
 	height?: string
 	background?: string
 	name?: string
-	placeholder: string
+	placeholder?: string
 	onChange: (e: React.FormEvent<HTMLTextAreaElement>) => void
 	value: string
 	onBlur?: (e: React.FormEvent<HTMLElement>) => void
@@ -38,8 +38,7 @@ const Textarea: React.FC<TextareaProps> = ({
 				width={width}
 				height={height}
 				background={background}
-				id={id}
-			></TextareaStyle>
+				id={id}></TextareaStyle>
 		</>
 	)
 }
