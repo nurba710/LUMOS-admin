@@ -1,4 +1,4 @@
-import React, { FocusEventHandler } from 'react'
+	import React, { FocusEventHandler } from 'react'
 import { InputStyle } from './style'
 
 export interface InputProps {
