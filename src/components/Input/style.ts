@@ -9,6 +9,7 @@ export const InputStyle = styled.input<{
 	background?: string
 	placeholderColor?: string
 	borderBottom?: string
+	borderColor?: string | undefined
 }>`
 	width: ${({ width }) => width};
 	height: ${({ height }) => height};
@@ -23,6 +24,7 @@ export const InputStyle = styled.input<{
 	font-size: ${({ fontSize }) => fontSize};
 	background: ${({ background }) => background};
 	transition: box-shadow 0.15s ease-in-out;
+	border-color: ${({ borderColor }) => borderColor};;
 
 	&:focus {
 		border-bottom: ${({ borderBottom }) => borderBottom};

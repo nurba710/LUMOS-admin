@@ -1,4 +1,4 @@
-import { DateCellsItem } from './DatePicker'
+import exp from 'constants'
 
 export const months = [
 	'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
@@ -13,6 +13,16 @@ export const sundayWeekToMondayWeekDayMap: Record<number, number> = {
 	4: 3,
 	5: 4,
 	6: 5,
+}
+
+export interface DateCellsItem {
+	date: number;
+	month: number;
+	year: number;
+	type: 'next' | 'prev' | 'current';
+
+	isToday?: boolean;
+	isSelected?: boolean;
 }
 
 export const getDayOfTheWeek = (date: Date) => {
@@ -34,6 +44,7 @@ export const getPreviousMonthDays = (year: number, month: number) => {
 			year,
 			month: month - 1,
 			date: daysAmountInPrevMonth - i,
+			type: 'prev',
 		})
 	}
 
@@ -55,6 +66,7 @@ export const getNextMonthDays = (year: number, month: number) => {
 			year: cellYear,
 			month: cellMonth,
 			date: i,
+			type: 'next',
 		})
 	}
 	return dateCells
@@ -77,8 +89,103 @@ export const getCurrentMonthDays = (year: number, month: number, numberOfDays: n
 			year,
 			month,
 			date: i,
+			type: 'current',
 		})
 	}
 
 	return dateCells
+}
+export const getInputValueFromDate = (value: Date) => {
+	const date = addLeadingZeroIfNeeded(value.getDate())
+	const month = addLeadingZeroIfNeeded(value.getMonth() + 1)
+	const year = value.getFullYear()
+	return `${date}-${month}-${year}`
+}
+
+
+export const addLeadingZeroIfNeeded = (value: number) => {
+	if (value > 9) {
+		return value.toString()
+	}
+	return `0${value}`
+}
+
+export function isToday(cell: DateCellsItem, todayDate: Date) {
+	return todayDate.getFullYear() === cell.year &&
+		todayDate.getMonth() === cell.month &&
+		todayDate.getDate() === cell.date
+}
+
+export function isInRange(value: Date, min?: Date, max?: Date) {
+	if (min && max) {
+		return isSmallerThanDate(value, max) && isBiggerThanDate(value, min)
+	}
+
+	if (min) {
+		return isBiggerThanDate(value, min)
+	}
+
+	if (max) {
+		return isSmallerThanDate(value, max)
+	}
+	return true
+}
+
+export function isBiggerThanDate(value: Date, date: Date) {
+	if (value.getFullYear() > date.getFullYear()) {
+		return true
+	}
+	if (value.getFullYear() < date.getFullYear()) {
+		return false
+	}
+	if (value.getMonth() > date.getMonth()) {
+		return true
+	}
+	if (value.getMonth() < date.getMonth()) {
+		return false
+	}
+	return value.getDate() >= date.getDate()
+}
+
+export function isSmallerThanDate(value: Date, date: Date) {
+	if (value.getFullYear() > date.getFullYear()) {
+		return false
+	}
+	if (value.getFullYear() < date.getFullYear()) {
+		return true
+	}
+	if (value.getMonth() > date.getMonth()) {
+		return false
+	}
+	if (value.getMonth() < date.getMonth()) {
+		return true
+	}
+	return value.getDate() <= date.getDate()
+}
+
+const validValueRegex = /^\d{2}-\d{2}-\d{4}$/
+
+export const isValidDateString = (value: string) => {
+	if (!validValueRegex.test(value)) {
+		return false
+	}
+	const [date, month, year] = value.split('-').map(v => parseInt(v, 10))
+	if (month < 1 || month > 12 || date < 1) {
+		return false
+	}
+
+	const maxDaysInAMonth = getDaysAmountInAMonth(year, month - 1)
+	if (date > maxDaysInAMonth) {
+		return false
+	}
+	return true
+}
+
+export const getDateFromInputValue = (inputValue: string) => {
+	if (!isValidDateString(inputValue)) {
+		return
+	}
+	const [date, month, year] = inputValue.split('-').map(v => parseInt(v, 10))
+	const dateObj = new Date(year, month - 1, date)
+	return dateObj
 }

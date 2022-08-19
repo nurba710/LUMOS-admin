@@ -1,4 +1,4 @@
-	import React, { FocusEventHandler } from 'react'
+import React, { FocusEventHandler } from 'react'
 import { InputStyle } from './style'
 
 export interface InputProps {
@@ -11,41 +11,53 @@ export interface InputProps {
 	placeholder?: string
 	type?: 'text' | 'password' | 'radio' | 'checkbox' | 'number' | 'email'
 	placeholderColor?: string
-	onChange?: (e: React.FormEvent<HTMLInputElement>) => void
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 	borderBottom?: string
 	value: string
 	name?: string
 	id?: string
 	label?: string
 	onBlur?: FocusEventHandler<HTMLInputElement>
+	borderColor?: string | undefined
+	onKeyDown?: (e: React.KeyboardEvent) => void
+	onClick?: () => void
+	onMouseDown?: (e: React.MouseEvent) => void
 }
 
 const Input: React.FC<InputProps> = ({
-	width = '200px',
-	height = '35px',
-	margin = '2-px',
-	value,
-	label,
-	id,
-	name,
-	onChange,
-	type = 'text',
-	placeholder,
-	fontSize = '15px',
-	color = 'black',
-	background = 'white',
-	borderBottom = '1px solid cornflowerblue',
-	placeholderColor = 'cornflowerblue',
-	onBlur,
-}) => {
+																			 borderColor,
+																			 width = '140px',
+																			 height = '35px',
+																			 margin = '2px',
+																			 value,
+																			 label,
+																			 id,
+																			 name,
+																			 onChange,
+																			 onClick,
+																			 onKeyDown,
+																			 type = 'text',
+																			 placeholder,
+																			 fontSize = '20px',
+																			 color = 'black',
+																			 background = 'white',
+																			 borderBottom = '1px solid #4CAF50',
+																			 placeholderColor = '#3e8e41',
+																			 onBlur,
+																			 onMouseDown,
+																		 }) => {
 	return (
 		<>
 			<label id={id}>{label}</label>
 			<InputStyle
+				onMouseDown={onMouseDown}
+				onKeyDown={onKeyDown}
+				borderColor={borderColor}
 				value={value}
 				name={name}
 				onChange={onChange}
 				type={type}
+				onClick={onClick}
 				margin={margin}
 				borderBottom={borderBottom}
 				placeholderColor={placeholderColor}

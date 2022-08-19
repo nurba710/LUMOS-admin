@@ -1,13 +1,20 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import Button from '../Button/Button'
+import Input from '../Input/Input'
 import {
+	DateCellsItem,
 	dayOfTheWeek,
-	getCurrentMonthDays,
-	getDaysAmountInAMonth,
+	getCurrentMonthDays, getDateFromInputValue,
+	getDaysAmountInAMonth, getInputValueFromDate,
 	getNextMonthDays,
-	getPreviousMonthDays,
+	getPreviousMonthDays, isInRange, isToday,
 	months,
 } from './consts'
-import { CalendarButtonStyle, CalendarPanelItemStyle, CalendarPanelStyle } from './style'
+import {
+	CalendarButtonStyle, CalendarButtonStyleLeft,
+	CalendarButtonStyleRight, CalendarHeaderStyle,
+	CalendarPanelDateStyle, CalendarPanelItemDate, CalendarPanelItemStyle, CalendarPanelStyle, CalendarPanelWrapperStyle, DatePickerPopupContentWrapper,
+} from './style'
 
 export interface DatePickerProps {
 	value: Date;
@@ -25,60 +32,13 @@ export interface DatePickerPopupProps {
 	max?: Date;
 }
 
-export interface DateCellsItem {
-	date: number;
-	month: number;
-	year: number;
-
-	isToday?: boolean;
-	isSelected?: boolean;
-}
-
-function isToday(todayDate:Date, cell:DateCellsItem) {
-return todayDate.getFullYear() === cell.year&&todayDate.getMonth() === cell.month&&todayDate.getDate()===cell.date
-}
-
-const validValueRegex = /^\d{2}-\d{2}-\d{4}$/
-const isValidDateString = (value: string) => {
-	if (!validValueRegex.test(value)) {
-		return false
-	}
-	const [date, month, year] = value.split('-').map(v => parseInt(v, 10))
-
-	if (month < 1 || month > 12 || date < 1) {
-		return false
-	}
-	const maxDaysInAMonth = getDaysAmountInAMonth(year, month - 1)
-	if (date > maxDaysInAMonth) {
-		return false
-	}
-	return true
-}
-
-const addLeadingZeroIfNeeded = (value: number) => {
-	if (value > 9) {
-		return value.toString()
-	}
-	return `0${value}`
-}
-
-const getInputValueFromDate = (value: Date) => {
-	const date = addLeadingZeroIfNeeded(value.getDate())
-	const month = addLeadingZeroIfNeeded(value.getMonth() + 1)
-	const year = value.getFullYear()
-	return `${date}-${month}-${year}`
-}
-
-
 function useLatest<T>(value: T) {
 	const valueRef = useRef(value)
 	useLayoutEffect(() => {
 		valueRef.current = value
 	}, [value])
-
 	return valueRef
 }
-
 
 const DatePicker: React.FC<DatePickerProps> = ({
 																								 value,
@@ -89,11 +49,28 @@ const DatePicker: React.FC<DatePickerProps> = ({
 	const [showPopup, setShowPopup] = useState(false)
 	const [inputValue, setInputValue] = useState('')
 	const elementRef = useRef<HTMLDivElement>(null)
-	const latestInputValue = useLatest(inputValue)
-	const latestValue = useLatest(value)
 	useLayoutEffect(() => {
 		setInputValue(getInputValueFromDate(value))
 	}, [value])
+
+	const updateValueOnPopupCloseAction = () => {
+		const date = getDateFromInputValue(inputValue)
+
+		setShowPopup(false)
+
+		if (!date) {
+			setInputValue(getInputValueFromDate(value))
+			return
+		}
+
+		const isDateInRange = isInRange(date, min, max)
+		if (!isDateInRange) {
+			return
+		}
+		onChange(date)
+	}
+
+	const latestUpdateValueFromInput = useLatest(updateValueOnPopupCloseAction)
 
 	useEffect(() => {
 		const element = elementRef.current
@@ -108,20 +85,14 @@ const DatePicker: React.FC<DatePickerProps> = ({
 			if (element.contains(target)) {
 				return
 			}
-			const dateFromInputValue = getDateFromInputValue(latestInputValue.current)
-			if (dateFromInputValue) {
-				onChange(dateFromInputValue)
-			} else {
-				setInputValue(getInputValueFromDate(latestValue.current))
-			}
-			setShowPopup(false)
+			latestUpdateValueFromInput.current()
 		}
 		document.addEventListener('click', onDocumentClick)
 
 		return () => {
 			document.removeEventListener('click', onDocumentClick)
 		}
-	}, [latestInputValue, latestValue])
+	}, [latestUpdateValueFromInput])
 
 	const handleChange = (value: Date) => {
 		onChange(value)
@@ -135,55 +106,58 @@ const DatePicker: React.FC<DatePickerProps> = ({
 		setShowPopup(true)
 	}
 
-	const getDateFromInputValue = (inputValue: string) => {
-		if (!isValidDateString(inputValue)) {
-			return
+	const [inputValueDate, isValidInputValue] = useMemo(() => {
+		const date = getDateFromInputValue(inputValue)
+
+		if (!date) {
+			return [undefined, false]
 		}
-		const [date, month, year] = inputValue.split('-').map(v => parseInt(v, 10))
-		const dateObj = new Date(year, month - 1, date)
-		return dateObj
-	}
+		const isDateInRange = isInRange(date, min, max)
 
-
-	const inputValueDate = useMemo(() => {
-		return getDateFromInputValue(inputValue)
-	}, [inputValue])
+		return [date, isDateInRange]
+	}, [inputValue, min, max])
 
 	const onKeyDown = (e: React.KeyboardEvent) => {
 		if (e.key !== 'Enter') {
 			return
 		}
-		const date = getDateFromInputValue(inputValue)
-		if (!date) {
-			setInputValue(getInputValueFromDate(value))
-		} else {
-			handleChange(date)
-		}
 		setShowPopup(false)
+		updateValueOnPopupCloseAction()
 	}
-	return <div ref={elementRef} style={{ position: 'relative', display: 'inline-block' }}>
-		<input onKeyDown={onKeyDown} onClick={onInputClick} value={inputValue}
-					 onChange={onInputValueChange} />
+	return <CalendarPanelWrapperStyle ref={elementRef}>
+		<Input
+			borderColor={isValidInputValue ? undefined : 'red'}
+			color={isValidInputValue ? undefined : 'red'}
+			onKeyDown={onKeyDown}
+			onMouseDown={onInputClick}
+			value={inputValue}
+			onChange={onInputValueChange} />
 		{showPopup && (
-			<div style={{ position: 'absolute', top: '100%', left: 0 }}>
-				<DatePickerPopupContent inputValueDate={inputValueDate} selectedValue={value} onChange={handleChange} min={min}
+			<DatePickerPopupContentWrapper>
+				<DatePickerPopupContent inputValueDate={inputValueDate}
+																selectedValue={value}
+																onChange={handleChange}
+																min={min}
 																max={max} />
-			</div>
+			</DatePickerPopupContentWrapper>
 		)}
-	</div>
+	</CalendarPanelWrapperStyle>
 }
 
 
-const DatePickerPopupContent: React.FC<DatePickerPopupProps> = ({
-																																	inputValueDate,
-																																	selectedValue,
-																																	onChange,
-																																	min,
-																																	max,
-																																}) => {
+
+
+const DatePickerPopupContent: React.FC<DatePickerPopupProps> = (
+	{
+		inputValueDate,
+		selectedValue,
+		onChange,
+		min,
+		max,
+	}) => {
 	const [panelYear, setPanelYear] = useState(() => selectedValue.getFullYear())
 	const [panelMonth, setPanelMonth] = useState(() => selectedValue.getMonth())
-	const todayDate = useMemo(() => new Date(),[])
+	const todayDate = useMemo(() => new Date(), [])
 
 	useLayoutEffect(() => {
 		if (!inputValueDate) {
@@ -197,16 +171,15 @@ const DatePickerPopupContent: React.FC<DatePickerPopupProps> = ({
 		const currentYear = selectedValue.getFullYear()
 		const currentMonth = selectedValue.getMonth()
 		const currentDay = selectedValue.getDate()
+
 		return [currentDay, currentMonth, currentYear]
 	}, [selectedValue])
-
 
 	const dateCells = useMemo(() => {
 		const daysInAMonth = getDaysAmountInAMonth(panelYear, panelMonth)
 		const currentMonthDays = getCurrentMonthDays(panelYear, panelMonth, daysInAMonth)
 		const prevMonthDays = getPreviousMonthDays(panelYear, panelMonth)
 		const nextMonthDays = getNextMonthDays(panelYear, panelMonth)
-		// console.log(daysInAMonth)
 
 		return [...prevMonthDays, ...currentMonthDays, ...nextMonthDays]
 	}, [panelYear, panelMonth])
@@ -219,9 +192,11 @@ const DatePickerPopupContent: React.FC<DatePickerPopupProps> = ({
 	const nextYear = () => {
 		setPanelYear(year => year + 1)
 	}
+
 	const prevYear = () => {
 		setPanelYear(year => year - 1)
 	}
+
 	const nextMonth = () => {
 		if (panelMonth === 11) {
 			setPanelMonth(0)
@@ -230,6 +205,7 @@ const DatePickerPopupContent: React.FC<DatePickerPopupProps> = ({
 			setPanelMonth(panelMonth + 1)
 		}
 	}
+
 	const prevMonth = () => {
 		if (panelMonth === 0) {
 			setPanelMonth(11)
@@ -239,28 +215,43 @@ const DatePickerPopupContent: React.FC<DatePickerPopupProps> = ({
 		}
 	}
 	return (
-		<div>
-			<div>
+		<CalendarHeaderStyle>
+			<CalendarPanelDateStyle>
 				{months[panelMonth]} {panelYear}
-			</div>
+			</CalendarPanelDateStyle>
 			<CalendarButtonStyle>
-				<button onClick={prevYear}>Prev Year</button>
-				<button onClick={nextYear}>Next Year</button>
-				<button onClick={prevMonth}>Prev Month</button>
-				<button onClick={nextMonth}>Next Month</button>
+				<CalendarButtonStyleLeft>
+					<Button fontSize='12px' width='70px' height='30px' name='Prev Year' onClick={prevYear} />
+					<Button fontSize='12px' width='70px' height='30px' name='Prev Month' onClick={prevMonth} />
+				</CalendarButtonStyleLeft>
+				<CalendarButtonStyleRight>
+					<Button fontSize='12px' width='70px' height='30px' name='Next Month' onClick={nextMonth} />
+					<Button fontSize='12px' width='70px' height='30px' name='Next Year' onClick={nextYear} />
+				</CalendarButtonStyleRight>
 			</CalendarButtonStyle>
 			<CalendarPanelStyle>
-				{dayOfTheWeek.map(weekDay => (<CalendarPanelItemStyle key={weekDay}>{weekDay}</CalendarPanelItemStyle>))}
+				{dayOfTheWeek.map(weekDay => (<CalendarPanelItemStyle key={weekDay}>
+					{weekDay}</CalendarPanelItemStyle>))}
 				{dateCells.map(cell => {
-					const isCurrentDate =
+					const isSelectedDate =
 						cell.year === year && cell.month === month && cell.date === day
-					const isTodayDate = isToday(todayDate, cell)
-					return (<CalendarPanelItemStyle background={isCurrentDate ? 'red' : ''}
-																					key={`${cell.date}-${cell.month}-${cell.year}`}
-																					onClick={() => onDateSelect(cell)}>{cell.date}</CalendarPanelItemStyle>)
+					const isTodayDate = isToday(cell, todayDate)
+					const isNotCurrent = cell.type !== 'current'
+					const isDateInRange = isInRange(new Date(cell.year, cell.month, cell.date), min, max)
+
+					return (<CalendarPanelItemStyle
+							cursor={isDateInRange ? 'pointer' : 'not-allowed'}
+							color={isSelectedDate ? 'white' : '' || isTodayDate ? '#3e8e41' : ''}
+							key={`${cell.date}-${cell.month}-${cell.year}`}
+							onClick={() => isDateInRange && onDateSelect(cell)}>
+							<CalendarPanelItemDate
+								opacity={isNotCurrent ? 0.4 : ''}
+								background={isSelectedDate ? '#4CAF50' : ''}>{cell.date}</CalendarPanelItemDate>
+						</CalendarPanelItemStyle>
+					)
 				})}
 			</CalendarPanelStyle>
-		</div>
+		</CalendarHeaderStyle>
 	)
 }
 
