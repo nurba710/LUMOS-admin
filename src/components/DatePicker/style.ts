@@ -10,42 +10,67 @@ export const CalendarPanelStyle = styled.div<{}>
     border-top: 1px solid lightgrey;
     border-left: 1px solid lightgrey;
 	`
+
 export const CalendarHeaderStyle = styled.div<{}>
 	`
-    border: 1px solid lightgrey;
+    box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
     border-bottom: none;
 	`
 
 export const CalendarPanelDateStyle = styled.div<{}>
 	`
-		margin-top: 8px;
     text-align: center;
 	`
 
 export const CalendarPanelItemStyle = styled.div<{
 	cursor?: string,
-	opacity?: string,
 	background?: string,
-	color?: string
+	color?: string,
+	border?: string,
+	opacity?: string | number,
+	borderHover?: string,
+	borderRadius?: string,
+	fontWeight?: string
 }>
 	`
-    border-right: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
     color: ${({ color }) => color};
     padding: 4px;
     opacity: ${({ opacity }) => opacity};;
     display: flex;
     cursor: ${({ cursor }) => cursor};
-    justify-content: flex-end;
+    justify-content: center;
     background: ${({ background }) => background};
-    align-items: flex-start;
+    align-items: center;
+    border: ${({ border }) => border};
+    border-radius: ${({ borderRadius }) => borderRadius};
+    opacity: ${({ opacity }) => opacity};
+		font-weight: ${({fontWeight}) => fontWeight};
+		
+    &:hover {
+      border: ${({ borderHover }) => borderHover};
+    }
 	`
+
+export const CalendarPanelWeekItemStyle = styled.div<{
+	cursor?: string,
+	background?: string,
+	color?: string
+}>`
+  color: ${({ color }) => color};
+  padding: 4px;
+  display: flex;
+  cursor: ${({ cursor }) => cursor};
+  justify-content: center;
+  background: ${({ background }) => background};
+  align-items: center;
+`
 
 export const CalendarButtonStyleLeft = styled.div<{}>
 	`
     display: flex;
     column-gap: 8px;
 	`
+
 export const CalendarButtonStyleRight = styled.div<{}>
 	`
     display: flex;
@@ -57,22 +82,6 @@ export const CalendarButtonStyle = styled.div<{}>
     display: flex;
     margin: 12px 10px;
     justify-content: space-between;
-	`
-
-export const CalendarPanelItemDate = styled.div<{
-	opacity?: string | number;
-	background?: string;
-	borderRadius?: string;
-	cursor?: string;
-}>
-	`
-    border-radius: 50%;
-    background: ${({ background }) => background};
-    width: 30px;
-    opacity: ${({ opacity }) => opacity};
-    height: 30px;
-    padding: 3px;
-    text-align: center;
 	`
 
 export const CalendarPanelWrapperStyle = styled.div<{}>

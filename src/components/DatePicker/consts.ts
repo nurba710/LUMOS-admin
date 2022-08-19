@@ -1,5 +1,3 @@
-import exp from 'constants'
-
 export const months = [
 	'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 ]
@@ -20,7 +18,6 @@ export interface DateCellsItem {
 	month: number;
 	year: number;
 	type: 'next' | 'prev' | 'current';
-
 	isToday?: boolean;
 	isSelected?: boolean;
 }

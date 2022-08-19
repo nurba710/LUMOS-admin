@@ -6,14 +6,16 @@ import {
 	dayOfTheWeek,
 	getCurrentMonthDays, getDateFromInputValue,
 	getDaysAmountInAMonth, getInputValueFromDate,
-	getNextMonthDays,
-	getPreviousMonthDays, isInRange, isToday,
+	getNextMonthDays, getPreviousMonthDays,
+	isInRange, isToday,
 	months,
 } from './consts'
 import {
 	CalendarButtonStyle, CalendarButtonStyleLeft,
 	CalendarButtonStyleRight, CalendarHeaderStyle,
-	CalendarPanelDateStyle, CalendarPanelItemDate, CalendarPanelItemStyle, CalendarPanelStyle, CalendarPanelWrapperStyle, DatePickerPopupContentWrapper,
+	CalendarPanelDateStyle, CalendarPanelItemStyle,
+	CalendarPanelStyle, CalendarPanelWeekItemStyle,
+	CalendarPanelWrapperStyle, DatePickerPopupContentWrapper,
 } from './style'
 
 export interface DatePickerProps {
@@ -30,6 +32,9 @@ export interface DatePickerPopupProps {
 	inputValueDate?: Date;
 	min?: Date;
 	max?: Date;
+	borderHover?: string;
+	borderRadius?: string;
+
 }
 
 function useLatest<T>(value: T) {
@@ -143,10 +148,6 @@ const DatePicker: React.FC<DatePickerProps> = ({
 		)}
 	</CalendarPanelWrapperStyle>
 }
-
-
-
-
 const DatePickerPopupContent: React.FC<DatePickerPopupProps> = (
 	{
 		inputValueDate,
@@ -154,6 +155,9 @@ const DatePickerPopupContent: React.FC<DatePickerPopupProps> = (
 		onChange,
 		min,
 		max,
+		borderHover = '1px solid #4CAF50',
+		borderRadius = '25%',
+
 	}) => {
 	const [panelYear, setPanelYear] = useState(() => selectedValue.getFullYear())
 	const [panelMonth, setPanelMonth] = useState(() => selectedValue.getMonth())
@@ -221,17 +225,21 @@ const DatePickerPopupContent: React.FC<DatePickerPopupProps> = (
 			</CalendarPanelDateStyle>
 			<CalendarButtonStyle>
 				<CalendarButtonStyleLeft>
-					<Button fontSize='12px' width='70px' height='30px' name='Prev Year' onClick={prevYear} />
-					<Button fontSize='12px' width='70px' height='30px' name='Prev Month' onClick={prevMonth} />
+					<Button fontWeight='400' fontSize='12px' width='70px'
+									height='30px' name='Prev Year' onClick={prevYear} />
+					<Button fontWeight='400' fontSize='12px' width='70px'
+									height='30px' name='Prev Month' onClick={prevMonth} />
 				</CalendarButtonStyleLeft>
 				<CalendarButtonStyleRight>
-					<Button fontSize='12px' width='70px' height='30px' name='Next Month' onClick={nextMonth} />
-					<Button fontSize='12px' width='70px' height='30px' name='Next Year' onClick={nextYear} />
+					<Button fontWeight='400' fontSize='12px' width='70px'
+									height='30px' name='Next Month' onClick={nextMonth} />
+					<Button fontWeight='400' fontSize='12px' width='70px'
+									height='30px' name='Next Year' onClick={nextYear} />
 				</CalendarButtonStyleRight>
 			</CalendarButtonStyle>
 			<CalendarPanelStyle>
-				{dayOfTheWeek.map(weekDay => (<CalendarPanelItemStyle key={weekDay}>
-					{weekDay}</CalendarPanelItemStyle>))}
+				{dayOfTheWeek.map(weekDay => (<CalendarPanelWeekItemStyle key={weekDay}>
+					{weekDay}</CalendarPanelWeekItemStyle>))}
 				{dateCells.map(cell => {
 					const isSelectedDate =
 						cell.year === year && cell.month === month && cell.date === day
@@ -240,13 +248,16 @@ const DatePickerPopupContent: React.FC<DatePickerPopupProps> = (
 					const isDateInRange = isInRange(new Date(cell.year, cell.month, cell.date), min, max)
 
 					return (<CalendarPanelItemStyle
+							borderRadius={borderRadius}
+							borderHover={borderHover}
 							cursor={isDateInRange ? 'pointer' : 'not-allowed'}
+							opacity={isNotCurrent ? 0.4 : ''}
+							background={isSelectedDate ? '#4CAF50' : ''}
 							color={isSelectedDate ? 'white' : '' || isTodayDate ? '#3e8e41' : ''}
+							fontWeight={isTodayDate ? '600' : '' || isSelectedDate ? '400' : ''}
 							key={`${cell.date}-${cell.month}-${cell.year}`}
 							onClick={() => isDateInRange && onDateSelect(cell)}>
-							<CalendarPanelItemDate
-								opacity={isNotCurrent ? 0.4 : ''}
-								background={isSelectedDate ? '#4CAF50' : ''}>{cell.date}</CalendarPanelItemDate>
+							{cell.date}
 						</CalendarPanelItemStyle>
 					)
 				})}
