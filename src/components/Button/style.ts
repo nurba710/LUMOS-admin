@@ -8,6 +8,8 @@ export const ButtonStyle = styled.button<{
 	width?: string
 	height?: string
 	transitionDurationHover?: string
+	fontSize?: string
+	fontWeight?: string
 }>`
 	width: ${({ width }) => width};
 	height: ${({ height }) => height};
@@ -19,6 +21,8 @@ export const ButtonStyle = styled.button<{
 	text-align: center;
 	text-decoration: none;
 	cursor: pointer;
+	font-size: ${({ fontSize }) => fontSize};
+	font-weight: ${({fontWeight}) => fontWeight};
 
 	&:hover {
 		background: ${({ backgroundHover }) => backgroundHover};

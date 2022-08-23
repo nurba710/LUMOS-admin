@@ -13,23 +13,28 @@ export interface ButtonProps {
 	onClick?: () => void
 	transitionDurationHover?: string
 	disabled?: boolean
+	fontSize?: string
+	fontWeight?: string
 }
 
 const Button: React.FC<ButtonProps> = ({
-	transitionDurationHover = '0.1s',
-	width = '150px',
-	height = '50px',
-	margin = '20px',
-	background = '#4CAF50',
-	name,
-	type,
-	onClick,
-	color = 'white',
-	backgroundHover = '#3e8e41',
-	disabled,
-}) => {
+																				 transitionDurationHover = '0.1s',
+																				 width = '150px',
+																				 height = '50px',
+																				 margin,
+																				 background = '#4CAF50',
+																				 name,
+																				 type,
+																				 onClick,
+																				 color = 'white',
+																				 backgroundHover = '#3e8e41',
+																				 disabled,
+																				 fontSize,
+	fontWeight
+																			 }) => {
 	return (
 		<ButtonStyle
+			fontWeight={fontWeight}
 			type={type}
 			transitionDurationHover={transitionDurationHover}
 			width={width}
@@ -39,7 +44,9 @@ const Button: React.FC<ButtonProps> = ({
 			backgroundHover={backgroundHover}
 			background={background}
 			color={color}
-			onClick={onClick}>
+			onClick={onClick}
+			fontSize={fontSize}
+		>
 			{name}
 		</ButtonStyle>
 	)
