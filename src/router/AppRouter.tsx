@@ -5,6 +5,7 @@ import ChangePasswordPage from '../pages/ChangePasswordPage/ChangePasswordPage'
 import HomePage from '../pages/HomePage'
 import { AdminRoutePath } from '../common/consts/routes.const'
 import CreateProfilePage from '../pages/CreateProfilePage'
+import CreateProjectPage from "../components/CreateProject/CreateProjectPage";
 
 const AppRouter = () => {
 	return (
@@ -19,6 +20,8 @@ const AppRouter = () => {
 				path={AdminRoutePath.CREATE_PROFILE}
 				element={<CreateProfilePage />}
 			/>
+			<Route path={AdminRoutePath.CHANGE_PASSWORD_PAGE} element={<ChangePasswordPage />} />
+			<Route path={AdminRoutePath.CREATE_PROJECT_INFO} element={<CreateProjectPage />} />
 		</Routes>
 	)
 }
